@@ -1,432 +1,1431 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BM Studio — Дизайн интерьера</title>
-  <meta name="description" content="BM Studio — профессиональный дизайн интерьера. Портфолио, услуги, контакты." />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BM Studio - Дизайн интерьеров</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #c8a97e;
+            --secondary-color: #b89465;
+            --text-color: #333;
+            --bg-color: #fff;
+            --light-bg: #f9f9f9;
+            --dark-text: #fff;
+            --dark-bg: #1a1a1a;
+            --dark-light-bg: #2d2d2d;
+            --transition: all 0.3s ease;
+        }
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <!-- Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <style>
-    :root{
-      --bg:#0f1724;
-      --card:#0b1220;
-      --muted:#9aa4b2;
-      --accent:#ff7a59;
-      --accent-2:#ffd86b;
-      --glass: rgba(255,255,255,0.04);
-      --radius:14px;
-      --max-width:1200px;
-      --transition:300ms cubic-bezier(.2,.9,.3,1);
-      color-scheme: light; /* so mobile browsers show correct form colors */
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: linear-gradient(180deg,#f7f8fb 0%, #ffffff 100%);
-      color:#0b1220;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.45;
-    }
-
-    /* Layout container */
-    .site{max-width:var(--max-width);margin:0 auto;padding:28px}
-
-    /* Header */
-    header{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
-    .brand{display:flex;gap:12px;align-items:center}
-    .brand__logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px}
-    .brand__name{font-weight:700;font-size:18px}
-
-    nav{display:flex;gap:18px;align-items:center}
-    nav a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:10px;transition:var(--transition)}
-    nav a:hover{color:var(--accent);background:rgba(255,122,89,0.06)}
-
-    .cta{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(90deg,var(--accent),#ff5c49);color:white;padding:10px 16px;border-radius:12px;text-decoration:none;font-weight:600}
-
-    /* Mobile nav */
-    .mobile-toggle{display:none;background:none;border:0;font-size:20px}
-
-    /* Hero */
-    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:32px 0}
-    .hero__content h1{font-size:40px;margin:0 0 12px}
-    .hero__content p{color:var(--muted);margin:0 0 18px}
-    .hero__actions{display:flex;gap:12px}
-
-    .card{background:white;border-radius:16px;box-shadow:0 8px 30px rgba(15,17,24,0.06);padding:18px}
-    .hero__shot{border-radius:12px;overflow:hidden;height:100%;min-height:320px}
-    .hero__shot img{width:100%;height:100%;object-fit:cover;display:block}
-
-    /* Services */
-    .services{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:28px 0}
-    .service{padding:18px;border-radius:12px;background:linear-gradient(180deg,#fff,#fbfbfe);border:1px solid rgba(11,18,32,0.03)}
-    .service h3{margin:8px 0}
-    .service p{color:var(--muted);font-size:14px}
-
-    /* Portfolio */
-    .portfolio{margin:28px 0}
-    .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
-    .filters button{padding:8px 12px;border-radius:999px;border:1px solid rgba(11,18,32,0.06);background:white;cursor:pointer}
-    .filters button.active{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white;border:0}
-
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-    .project{position:relative;overflow:hidden;border-radius:12px;cursor:pointer}
-    .project img{width:100%;height:240px;object-fit:cover;display:block}
-    .project__meta{position:absolute;left:12px;bottom:12px;background:rgba(0,0,0,0.5);backdrop-filter:blur(4px);color:white;padding:8px;border-radius:8px;font-weight:600}
-
-    /* Lightbox */
-    .lightbox{position:fixed;inset:0;background:rgba(11,18,32,0.7);display:flex;align-items:center;justify-content:center;z-index:1500;padding:20px;opacity:0;pointer-events:none;transition:var(--transition)}
-    .lightbox.open{opacity:1;pointer-events:auto}
-    .lightbox__img{max-width:1100px;width:100%;max-height:80vh;border-radius:12px;overflow:hidden}
-    .lightbox__img img{width:100%;height:100%;object-fit:cover}
-    .lightbox__close{position:absolute;right:20px;top:20px;background:rgba(255,255,255,0.06);border:0;color:white;padding:10px;border-radius:10px}
-
-    /* About */
-    .about{display:grid;grid-template-columns:1fr 360px;gap:18px;align-items:start}
-    .about p{color:var(--muted)}
-
-    /* Testimonials */
-    .testimonials{display:flex;gap:12px;overflow:hidden}
-    .testimonial{min-width:280px;background:white;border-radius:12px;padding:14px;box-shadow:0 6px 18px rgba(11,18,32,0.04)}
-    .testimonial p{color:var(--muted)}
-
-    /* Contact */
-    .contact{display:grid;grid-template-columns:1fr 360px;gap:18px}
-    form .row{display:flex;gap:8px}
-    input,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(11,18,32,0.06);font-size:14px}
-    button[type=submit]{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white;border:0;padding:12px 16px;border-radius:10px;font-weight:700}
-
-    footer{margin-top:36px;padding:20px 0;color:var(--muted);font-size:13px;border-top:1px solid rgba(11,18,32,0.04)}
-
-    /* Responsive */
-    @media(max-width:1000px){
-      .hero{grid-template-columns:1fr 320px}
-      .grid{grid-template-columns:repeat(2,1fr)}
-      .services{grid-template-columns:repeat(2,1fr)}
-      .about{grid-template-columns:1fr}
-      .contact{grid-template-columns:1fr}
-      nav{display:none}
-      .mobile-toggle{display:block}
-    }
-    @media(max-width:640px){
-      .site{padding:16px}
-      .hero{grid-template-columns:1fr}
-      .hero__shot{min-height:220px}
-      .grid{grid-template-columns:1fr}
-      .services{grid-template-columns:1fr}
-    }
-
-    /* small helpers */
-    .muted{color:var(--muted)}
-    .section{padding:28px 0}
-    .container{max-width:var(--max-width);margin:0 auto}
-  </style>
+        .dark-mode {
+            --text-color: #fff;
+            --bg-color: #1a1a1a;
+            --light-bg: #2d2d2d;
+        }
+        
+        /* Общие стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: var(--transition);
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: #fff;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        
+        .section {
+            padding: 100px 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 36px;
+            color: var(--text-color);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+        }
+        
+        .section-title span {
+            color: var(--primary-color);
+        }
+        
+        /* Шапка */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            background: rgba(var(--bg-color-rgb), 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+        
+        body:not(.dark-mode) header {
+            background: rgba(255, 255, 255, 0.95);
+        }
+        
+        body.dark-mode header {
+            background: rgba(26, 26, 26, 0.95);
+        }
+        
+        header.scrolled {
+            padding: 10px 0;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .logo span {
+            color: var(--primary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: var(--transition);
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        .nav-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-color);
+            transition: var(--transition);
+            z-index: 1002;
+        }
+        
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 20px;
+            cursor: pointer;
+            margin-left: 20px;
+            transition: var(--transition);
+        }
+        
+        .theme-toggle:hover {
+            color: var(--primary-color);
+            transform: rotate(30deg);
+        }
+        
+        /* Герой секция */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hero-content h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease;
+        }
+        
+        .hero-content p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease 0.3s forwards;
+            opacity: 0;
+        }
+        
+        .hero-content .btn {
+            animation: fadeInUp 1s ease 0.6s forwards;
+            opacity: 0;
+        }
+        
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            font-size: 30px;
+            animation: bounce 2s infinite;
+        }
+        
+        /* О нас */
+        .about {
+            background: var(--light-bg);
+            transition: var(--transition);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-img {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .about-img:before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: -15px;
+            bottom: -15px;
+            border: 2px solid var(--primary-color);
+            border-radius: 10px;
+            z-index: -1;
+            opacity: 0.5;
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .about-img:hover img {
+            transform: scale(1.05);
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .about-text p {
+            margin-bottom: 15px;
+        }
+        
+        /* Услуги */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: var(--bg-color);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 0;
+            background: var(--primary-color);
+            transition: var(--transition);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-card:hover:before {
+            height: 100%;
+        }
+        
+        .service-icon {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+        
+        .service-card:hover .service-icon {
+            transform: scale(1.2);
+        }
+        
+        .service-card h3 {
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        /* Портфолио */
+        .portfolio {
+            background: var(--light-bg);
+            transition: var(--transition);
+        }
+        
+        .portfolio-filters {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .portfolio-filters button {
+            background: none;
+            border: none;
+            padding: 8px 20px;
+            margin: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            border-radius: 30px;
+            transition: var(--transition);
+            color: var(--text-color);
+        }
+        
+        .portfolio-filters button.active, 
+        .portfolio-filters button:hover {
+            background: var(--primary-color);
+            color: #fff;
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .portfolio-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 250px;
+        }
+        
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(200, 169, 126, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: var(--transition);
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        .portfolio-overlay h3 {
+            margin-bottom: 10px;
+            font-size: 22px;
+            transform: translateY(-20px);
+            transition: var(--transition);
+        }
+        
+        .portfolio-overlay p {
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+        
+        .portfolio-item:hover .portfolio-overlay h3,
+        .portfolio-item:hover .portfolio-overlay p {
+            transform: translateY(0);
+        }
+        
+        /* Процесс работы */
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+        
+        .step {
+            flex: 0 0 calc(25% - 20px);
+            text-align: center;
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .step:not(:last-child):after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            right: -10%;
+            width: 20%;
+            height: 2px;
+            background: var(--primary-color);
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0 auto 20px;
+            transition: var(--transition);
+        }
+        
+        .step:hover .step-number {
+            transform: scale(1.1) rotate(10deg);
+        }
+        
+        .step h3 {
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        /* Отзывы */
+        .testimonials {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2053&q=80') no-repeat center center/cover;
+            color: #fff;
+            text-align: center;
+        }
+        
+        .testimonials-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .testimonial {
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .testimonial.active {
+            display: block;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 18px;
+            position: relative;
+            padding: 0 30px;
+        }
+        
+        .testimonial-text:before,
+        .testimonial-text:after {
+            content: '"';
+            font-size: 50px;
+            color: var(--primary-color);
+            position: absolute;
+            line-height: 1;
+        }
+        
+        .testimonial-text:before {
+            top: -10px;
+            left: 0;
+        }
+        
+        .testimonial-text:after {
+            bottom: -30px;
+            right: 0;
+        }
+        
+        .testimonial-author {
+            font-weight: 700;
+            font-size: 20px;
+        }
+        
+        .testimonial-role {
+            color: var(--primary-color);
+            margin-top: 5px;
+        }
+        
+        .testimonial-controls {
+            margin-top: 30px;
+        }
+        
+        .testimonial-controls button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 0 5px;
+            transition: var(--transition);
+        }
+        
+        .testimonial-controls button:hover {
+            background: var(--primary-color);
+        }
+        
+        /* Контакты */
+        .contact-content {
+            display: flex;
+            gap: 50px;
+        }
+        
+        .contact-info {
+            flex: 1;
+        }
+        
+        .contact-form {
+            flex: 1;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            transition: var(--transition);
+        }
+        
+        .contact-item:hover {
+            transform: translateX(10px);
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--light-bg);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            color: var(--primary-color);
+            margin-right: 15px;
+            transition: var(--transition);
+        }
+        
+        .contact-item:hover .contact-icon {
+            background: var(--primary-color);
+            color: #fff;
+        }
+        
+        .contact-text h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .contact-text a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .contact-text a:hover {
+            color: var(--primary-color);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Roboto', sans-serif;
+            background: var(--light-bg);
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Футер */
+        footer {
+            background: #222;
+            color: #fff;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        
+        .footer-logo span {
+            color: var(--primary-color);
+        }
+        
+        .footer-about p {
+            margin-bottom: 20px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            color: #fff;
+            margin-right: 10px;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--primary-color);
+            transform: translateY(-5px);
+        }
+        
+        .footer-links h3,
+        .footer-hours h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-links h3:after,
+        .footer-hours h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--primary-color);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links ul li a:hover {
+            color: var(--primary-color);
+            padding-left: 5px;
+        }
+        
+        .hours-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Анимации */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-20px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .contact-content {
+                flex-direction: column;
+            }
+            
+            .step {
+                flex: 0 0 calc(50% - 20px);
+                margin-bottom: 40px;
+            }
+            
+            .step:not(:last-child):after {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 15px 0;
+            }
+            
+            nav {
+                position: fixed;
+                top: 0;
+                right: -300px;
+                width: 300px;
+                height: 100vh;
+                background: var(--bg-color);
+                z-index: 1001;
+                padding: 80px 30px 30px;
+                transition: var(--transition);
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav.open {
+                right: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 0 0 20px 0;
+            }
+            
+            .nav-toggle {
+                display: block;
+            }
+            
+            .hero-content h1 {
+                font-size: 42px;
+            }
+            
+            .section-title {
+                font-size: 30px;
+            }
+            
+            .theme-toggle {
+                margin-left: 15px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-content h1 {
+                font-size: 32px;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            .step {
+                flex: 0 0 100%;
+            }
+            
+            .portfolio-filters button {
+                padding: 6px 15px;
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="site">
+    <!-- Шапка -->
     <header>
-      <div class="brand">
-        <div class="brand__logo">BM</div>
-        <div class="brand__name">BM Studio</div>
-      </div>
-
-      <nav>
-        <a href="#services">Услуги</a>
-        <a href="#portfolio">Портфолио</a>
-        <a href="#about">О студии</a>
-        <a href="#contact">Контакты</a>
-      </nav>
-
-      <div style="display:flex;align-items:center;gap:12px">
-        <a class="cta" href="mailto:info@bmstudio.kg"><i class="fa fa-envelope"></i> Написать</a>
-        <button class="mobile-toggle" aria-label="menu" id="mobileToggle"><i class="fa fa-bars"></i></button>
-      </div>
+        <div class="container header-container">
+            <a href="#" class="logo">BM <span>Studio</span></a>
+            <div class="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Главная</a></li>
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#services">Услуги</a></li>
+                    <li><a href="#portfolio">Портфолио</a></li>
+                    <li><a href="#process">Процесс</a></li>
+                    <li><a href="#testimonials">Отзывы</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+            </nav>
+            <button class="theme-toggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
     </header>
 
-    <!-- Mobile menu (hidden desktop) -->
-    <div id="mobileMenu" style="display:none;margin-bottom:12px">
-      <div class="card" style="padding:12px;display:flex;flex-direction:column;gap:8px">
-        <a href="#services">Услуги</a>
-        <a href="#portfolio">Портфолио</a>
-        <a href="#about">О студии</a>
-        <a href="#contact">Контакты</a>
-      </div>
-    </div>
-
-    <main>
-      <section class="hero">
-        <div class="hero__content">
-          <h1>BM Studio — интерьер, который работает</h1>
-          <p>Создаём уютные, функциональные и современные интерьеры для домов, квартир и коммерческих пространств. От концепта до реализации.</p>
-          <div class="hero__actions">
-            <a class="cta" href="#contact"><i class="fa fa-phone"></i> Записаться на консультацию</a>
-            <a href="#portfolio" style="padding:10px 14px;border-radius:10px;border:1px solid rgba(11,18,32,0.06);text-decoration:none;display:inline-flex;align-items:center;gap:8px">Смотреть портфолио</a>
-          </div>
-
-          <div style="margin-top:18px;display:flex;gap:12px">
-            <div class="card" style="display:flex;gap:12px;align-items:center;padding:12px">
-              <div style="width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:white;font-weight:700">20+</div>
-              <div>
-                <div style="font-weight:700">20 лет</div>
-                <div class="muted" style="font-size:13px">опыта в дизайне</div>
-              </div>
-            </div>
-
-            <div class="card" style="display:flex;gap:12px;align-items:center;padding:12px">
-              <div style="width:48px;height:48px;border-radius:10px;background:#e9eef8;display:flex;align-items:center;justify-content:center;color:#29466b;font-weight:700">500+</div>
-              <div>
-                <div style="font-weight:700">500 проектов</div>
-                <div class="muted" style="font-size:13px">квартир и домов</div>
-              </div>
-            </div>
-          </div>
+    <!-- Герой секция -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Дизайн интерьеров, который вдохновляет</h1>
+            <p>Мы создаем уникальные пространства, отражающие ваш стиль и характер. Профессиональный подход к каждому проекту.</p>
+            <a href="#contact" class="btn">Обсудить проект</a>
         </div>
-
-        <aside>
-          <div class="card hero__shot">
-            <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Interior shot">
-          </div>
-        </aside>
-      </section>
-
-      <section id="services" class="section">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-          <h2>Наши услуги</h2>
-          <div class="muted">От концепта до реализации — полный цикл</div>
+        <div class="scroll-down">
+            <i class="fas fa-chevron-down"></i>
         </div>
+    </section>
 
-        <div class="services">
-          <div class="service card">
-            <i class="fa fa-pencil-ruler" style="font-size:20px;color:var(--accent)"></i>
-            <h3>Концепт и визуализация</h3>
-            <p>Разработка концепта, 3D-визуализации, подбор материалов и освещения. Показываем как будет выглядеть ваш интерьер до ремонта.</p>
-          </div>
-          <div class="service card">
-            <i class="fa fa-tools" style="font-size:20px;color:var(--accent)"></i>
-            <h3>Авторский надзор</h3>
-            <p>Контроль за реализацией проекта, согласование с подрядчиками, выезды на объект и финальная приёмка.</p>
-          </div>
-          <div class="service card">
-            <i class="fa fa-box-open" style="font-size:20px;color:var(--accent)"></i>
-            <h3>Подбор мебели и декора</h3>
-            <p>Индивидуальная меблировка: от серийных решений до мебели на заказ. Оптимизируем бюджет и сроки.</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="portfolio" class="section portfolio">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-          <h2>Портфолио</h2>
-          <div class="muted">Выберите стиль или комнату</div>
-        </div>
-
-        <div class="filters" aria-label="фильтры проектов">
-          <button class="filter-btn active" data-filter="all">Все</button>
-          <button class="filter-btn" data-filter="apartment">Квартиры</button>
-          <button class="filter-btn" data-filter="house">Дома</button>
-          <button class="filter-btn" data-filter="office">Офисы</button>
-        </div>
-
-        <div class="grid" id="projects">
-          <!-- Project cards (images from Unsplash - replace with your photos) -->
-          <div class="project" data-type="apartment" data-title="Скандинавская квартира">
-            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="project 1">
-            <div class="project__meta">Скандинавская квартира</div>
-          </div>
-
-          <div class="project" data-type="house" data-title="Современный дом">
-            <img src="https://images.unsplash.com/photo-1505691723518-36a3f2c28f1b?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="project 2">
-            <div class="project__meta">Современный дом</div>
-          </div>
-
-          <div class="project" data-type="office" data-title="Офис креативного агентства">
-            <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="project 3">
-            <div class="project__meta">Офис</div>
-          </div>
-
-          <div class="project" data-type="apartment" data-title="Лофт-студия">
-            <img src="https://images.unsplash.com/photo-1549187774-b4f2b2d0c16e?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="project 4">
-            <div class="project__meta">Лофт</div>
-          </div>
-
-          <div class="project" data-type="house" data-title="Загородный интерьер">
-            <img src="https://images.unsplash.com/photo-1505691723518-36a3f2c28f1b?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="project 5">
-            <div class="project__meta">Загородный</div>
-          </div>
-
-          <div class="project" data-type="office" data-title="Coworking space">
-            <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="project 6">
-            <div class="project__meta">Coworking</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Lightbox -->
-      <div class="lightbox" id="lightbox" aria-hidden="true">
-        <button class="lightbox__close" id="lightboxClose" aria-label="close"><i class="fa fa-times"></i></button>
-        <div class="lightbox__img card" id="lightboxContent">
-          <!-- image inserted by JS -->
-        </div>
-      </div>
-
-      <section id="about" class="section about">
-        <div>
-          <h2>О BM Studio</h2>
-          <p>BM Studio — команда дизайнеров интерьера, создающая индивидуальные пространства, отражающие характер и образ жизни клиента. Мы работаем с жилыми и коммерческими объектами, уделяем внимание эргономике, свету и подбору материалов, а также сопровождаем проект до ключа.</p>
-
-          <h3 style="margin-top:18px">Подход</h3>
-          <p class="muted">Мы начинаем с глубинного брифа, формируем концепт и визуализацию, затем подготовим рабочие чертежи и смету. На этапе реализации — авторский надзор и постоянные проверки.</p>
-
-          <div style="margin-top:16px" class="testimonials">
-            <div class="testimonial">
-              <strong>Анна</strong>
-              <p class="muted">Спасибо BM Studio — ремонт сделали в срок, дизайнер учла все наши пожелания.</p>
+    <!-- О нас -->
+    <section class="section about" id="about">
+        <div class="container">
+            <h2 class="section-title">О <span>студии</span></h2>
+            <div class="about-content">
+                <div class="about-img">
+                    <img src="https://images.unsplash.com/photo-1560448204-603b3fc33ddc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="BM Studio">
+                </div>
+                <div class="about-text">
+                    <h2>BM Studio - создаем пространства для жизни</h2>
+                    <p>BM Studio - это команда профессиональных дизайнеров интерьера с многолетним опытом работы. Мы специализируемся на создании эстетичных и функциональных пространств, которые отражают характер и потребности наших клиентов.</p>
+                    <p>Наш подход сочетает в себе творческое видение, внимание к деталям и глубокое понимание современных тенденций в дизайне интерьеров. Мы работаем с различными стилями - от классики до современных минималистичных решений.</p>
+                    <a href="#portfolio" class="btn">Смотреть работы</a>
+                </div>
             </div>
-            <div class="testimonial">
-              <strong>Дмитрий</strong>
-              <p class="muted">Рекомендую команду. Отличные решения по зонированию и хранению.</p>
-            </div>
-          </div>
         </div>
+    </section>
 
-        <aside>
-          <div class="card">
-            <h3>Контакты</h3>
-            <p class="muted">Адрес: г. Бишкек, ул. Примерная, 10<br>Тел: +996 700 000 000<br>Email: info@bmstudio.kg</p>
-            <div style="margin-top:12px;display:flex;gap:8px">
-              <a href="#" aria-label="instagram" style="text-decoration:none;color:var(--muted)"><i class="fa fa-instagram"></i></a>
-              <a href="#" aria-label="facebook" style="text-decoration:none;color:var(--muted)"><i class="fa fa-facebook"></i></a>
+    <!-- Услуги -->
+    <section class="section services" id="services">
+        <div class="container">
+            <h2 class="section-title">Наши <span>услуги</span></h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Дизайн квартир</h3>
+                    <p>Разрабатываем функциональные и эстетичные решения для квартир любой площади. Создаем пространства, которые отражают ваш стиль и характер.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Дизайн домов</h3>
+                    <p>Проектируем уютные и комфортные загородные дома. Учитываем все нюансы жизни за городом и создаем гармоничное пространство.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3>Коммерческие помещения</h3>
+                    <p>Создаем привлекательные и функциональные интерьеры для ресторанов, офисов, магазинов и других коммерческих пространств.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-pencil-ruler"></i>
+                    </div>
+                    <h3>Архитектурное проектирование</h3>
+                    <p>Разрабатываем архитектурные решения, которые гармонично сочетают внешний облик и внутреннее пространство здания.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-couch"></i>
+                    </div>
+                    <h3>Авторский надзор</h3>
+                    <p>Обеспечиваем качественную реализацию проекта, контролируя все этапы работ и соблюдение дизайн-проекта.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Декорирование</h3>
+                    <p>Подбираем мебель, текстиль, освещение и аксессуары, которые завершают образ интерьера и делают его уникальным.</p>
+                </div>
             </div>
-          </div>
-        </aside>
-      </section>
-
-      <section id="contact" class="section contact">
-        <div>
-          <h2>Записаться на консультацию</h2>
-          <p class="muted">Оставьте сообщение, мы свяжемся с вами в течение рабочего дня.</p>
-
-          <form id="contactForm" onsubmit="return false;">
-            <div class="row">
-              <input id="name" placeholder="Ваше имя" required />
-              <input id="phone" placeholder="Телефон" required />
-            </div>
-            <div style="margin-top:8px">
-              <input id="email" placeholder="Email (необязательно)" />
-            </div>
-            <div style="margin-top:8px">
-              <textarea id="message" rows="5" placeholder="Коротко о задаче" required></textarea>
-            </div>
-            <div style="margin-top:10px;display:flex;gap:8px;align-items:center">
-              <button type="submit" id="sendBtn">Отправить</button>
-              <div id="formResult" class="muted" style="font-size:13px"></div>
-            </div>
-          </form>
         </div>
+    </section>
 
-        <aside>
-          <div class="card">
-            <h3>Где мы</h3>
-            <p class="muted">Ниже — пример карты. Замените src на ссылку Google Maps для вашей локации.</p>
-            <iframe title="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12" width="100%" height="220" style="border:0;border-radius:10px" loading="lazy"></iframe>
-          </div>
-        </aside>
-      </section>
+    <!-- Портфолио -->
+    <section class="section portfolio" id="portfolio">
+        <div class="container">
+            <h2 class="section-title">Наши <span>работы</span></h2>
+            <div class="portfolio-filters">
+                <button class="active" data-filter="all">Все</button>
+                <button data-filter="apartment">Квартиры</button>
+                <button data-filter="house">Дома</button>
+                <button data-filter="commercial">Коммерческие</button>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-category="apartment">
+                    <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Дизайн квартиры">
+                    <div class="portfolio-overlay">
+                        <h3>Современная квартира</h3>
+                        <p>Москва, ЖК "Центральный"</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="apartment">
+                    <img src="https://images.unsplash.com/photo-1493663284031-b7e3aaa4c4b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Дизайн квартиры">
+                    <div class="portfolio-overlay">
+                        <h3>Лофт квартира</h3>
+                        <p>Санкт-Петербург, Невский пр.</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="house">
+                    <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Дизайн дома">
+                    <div class="portfolio-overlay">
+                        <h3>Загородный дом</h3>
+                        <p>Подмосковье, коттеджный поселок</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="house">
+                    <img src="https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Дизайн дома">
+                    <div class="portfolio-overlay">
+                        <h3>Семейный коттедж</h3>
+                        <p>Ленинградская область</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="commercial">
+                    <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Дизайн ресторана">
+                    <div class="portfolio-overlay">
+                        <h3>Ресторан "La Piazza"</h3>
+                        <p>Москва, центр</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="commercial">
+                    <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1769&q=80" alt="Дизайн офиса">
+                    <div class="portfolio-overlay">
+                        <h3>Офис IT-компании</h3>
+                        <p>Санкт-Петербург</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    </main>
+    <!-- Процесс работы -->
+    <section class="section process" id="process">
+        <div class="container">
+            <h2 class="section-title">Процесс <span>работы</span></h2>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Консультация</h3>
+                    <p>Знакомство, обсуждение ваших пожеланий и потребностей, определение бюджета и сроков</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Планирование</h3>
+                    <p>Разработка концепции, планировочного решения и 3D визуализации будущего интерьера</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Реализация</h3>
+                    <p>Подбор материалов, мебели и decor, составление сметы и начало работ</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Завершение</h3>
+                    <p>Авторский надзор, финальные работы и сдача проекта в эксплуатацию</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Отзывы -->
+    <section class="section testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">Отзывы <span>клиентов</span></h2>
+            <div class="testimonials-slider">
+                <div class="testimonial active">
+                    <p class="testimonial-text">"Обратились в BM Studio для разработки дизайна нашей новой квартиры. Результат превзошел все ожидания! Учли все наши пожелания, предложили интересные решения. Теперь живем в красивом и функциональном пространстве."</p>
+                    <h4 class="testimonial-author">Мария и Алексей Ивановы</h4>
+                    <p class="testimonial-role">Квартира 85 кв.м.</p>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"Заказывали дизайн загородного дома в BM Studio. Очень профессиональный подход, внимательное отношение к деталям. Авторский надзор обеспечил точное соответствие проекта реализации. Рекомендуем!"</p>
+                    <h4 class="testimonial-author">Сергей Петров</h4>
+                    <p class="testimonial-role">Загородный дом 150 кв.м.</p>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"Нужно было создать уникальный интерьер для нашего ресторана. Студия предложила несколько интересных концепций, помогла с выбором материалов и контролировала реализацию. Гости отмечают особую атмосферу заведения."</p>
+                    <h4 class="testimonial-author">Ольга Семенова</h4>
+                    <p class="testimonial-role">Ресторан "La Piazza"</p>
+                </div>
+                <div class="testimonial-controls">
+                    <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+                    <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Наши <span>контакты</span></h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Адрес</h3>
+                            <p>г. Москва, ул. Тверская, д. 10</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Телефон</h3>
+                            <p><a href="tel:+74951234567">+7 (495) 123-45-67</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-telegram"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Telegram</h3>
+                            <p><a href="https://t.me/bmstudio" target="_blank">@bmstudio</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>WhatsApp</h3>
+                            <p><a href="https://wa.me/74951234567" target="_blank">+7 (495) 123-45-67</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Instagram</h3>
+                            <p><a href="https://instagram.com/bmstudio" target="_blank">@bmstudio</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="Ваше имя" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Ваш email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Ваш телефон">
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Сообщение" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Отправить сообщение</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
     <footer>
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
-        <div>© <strong>BM Studio</strong> — Все права защищены, 2025</div>
-        <div class="muted">Разработка сайта — BM Studio (фронтенд шаблон)</div>
-      </div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">BM <span>Studio</span></div>
+                    <p>Создаем уникальные интерьеры, которые отражают характер и потребности наших клиентов. Профессиональный подход и внимание к деталям.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Ссылки</h3>
+                    <ul>
+                        <li><a href="#home">Главная</a></li>
+                        <li><a href="#about">О нас</a></li>
+                        <li><a href="#services">Услуги</a></li>
+                        <li><a href="#portfolio">Портфолио</a></li>
+                        <li><a href="#process">Процесс</a></li>
+                        <li><a href="#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-hours">
+                    <h3>Часы работы</h3>
+                    <div class="hours-item">
+                        <span>Пн-Пт:</span>
+                        <span>9:00 - 19:00</span>
+                    </div>
+                    <div class="hours-item">
+                        <span>Суббота:</span>
+                        <span>10:00 - 17:00</span>
+                    </div>
+                    <div class="hours-item">
+                        <span>Воскресенье:</span>
+                        <span>Выходной</span>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 BM Studio. Все права защищены.</p>
+            </div>
+        </div>
     </footer>
-  </div>
 
-  <script>
-    // Mobile menu toggle
-    const mobileToggle = document.getElementById('mobileToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
-    mobileToggle.addEventListener('click', ()=>{
-      const open = mobileMenu.style.display === 'block';
-      mobileMenu.style.display = open ? 'none' : 'block';
-    });
-
-    // Portfolio filter
-    const filters = document.querySelectorAll('.filter-btn');
-    const projects = document.querySelectorAll('.project');
-    filters.forEach(btn => btn.addEventListener('click', ()=>{
-      filters.forEach(b=>b.classList.remove('active'));
-      btn.classList.add('active');
-      const f = btn.dataset.filter;
-      projects.forEach(p=>{
-        if(f === 'all' || p.dataset.type === f) p.style.display = '';
-        else p.style.display = 'none';
-      });
-    }));
-
-    // Lightbox
-    const lightbox = document.getElementById('lightbox');
-    const lightboxContent = document.getElementById('lightboxContent');
-    const lightboxClose = document.getElementById('lightboxClose');
-
-    projects.forEach(p => {
-      p.addEventListener('click', ()=>{
-        const img = p.querySelector('img').cloneNode();
-        const title = p.dataset.title || '';
-        lightboxContent.innerHTML = '';
-        lightboxContent.appendChild(img);
-        const caption = document.createElement('div');
-        caption.style.padding = '12px';
-        caption.style.color = '#222';
-        caption.style.background = 'white';
-        caption.style.fontWeight = '700';
-        caption.textContent = title;
-        lightboxContent.appendChild(caption);
-        lightbox.classList.add('open');
-        lightbox.setAttribute('aria-hidden','false');
-      });
-    });
-    lightboxClose.addEventListener('click', ()=>{ lightbox.classList.remove('open'); lightbox.setAttribute('aria-hidden','true'); });
-    lightbox.addEventListener('click', (e)=>{ if(e.target === lightbox) { lightbox.classList.remove('open'); lightbox.setAttribute('aria-hidden','true'); } });
-
-    // Contact form (no backend) - builds a mailto link as fallback
-    const contactForm = document.getElementById('contactForm');
-    const formResult = document.getElementById('formResult');
-    contactForm.addEventListener('submit', ()=>{
-      const name = document.getElementById('name').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const message = document.getElementById('message').value.trim();
-      if(!name || !phone || !message){ formResult.textContent = 'Пожалуйста, заполните обязательные поля.'; return; }
-
-      const subject = encodeURIComponent('Заявка с сайта BM Studio — ' + name);
-      const body = encodeURIComponent(`Имя: ${name}\nТелефон: ${phone}\nEmail: ${email}\n\nСообщение:\n${message}`);
-      // Try to open email client
-      window.location.href = `mailto:info@bmstudio.kg?subject=${subject}&body=${body}`;
-      formResult.textContent = 'Откроется почтовый клиент. Если нет — отправьте письмо на info@bmstudio.kg';
-    });
-
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', function(e){
-        const target = document.querySelector(this.getAttribute('href'));
-        if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth',block:'start'}); }
-      });
-    });
-
-    // Small accessibility improvements
-    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape'){ if(lightbox.classList.contains('open')){ lightbox.classList.remove('open'); lightbox.setAttribute('aria-hidden','true'); } } });
-
-    // Lazy load images (simple)
-    document.querySelectorAll('img').forEach(img=>{ img.loading = 'lazy'; });
-  </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Мобильное меню
+            const navToggle = document.querySelector('.nav-toggle');
+            const nav = document.querySelector('nav');
+            
+            navToggle.addEventListener('click', function() {
+                nav.classList.toggle('open');
+                
+                if (nav.classList.contains('open')) {
+                    navToggle.innerHTML = '<i class="fas fa-times"></i>';
+                } else {
+                    navToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+            
+            // Фиксированная шапка при прокрутке
+            const header = document.querySelector('header');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+                
+                // Анимация появления секций при скролле
+                document.querySelectorAll('.section').forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    
+                    if (window.scrollY > sectionTop - window.innerHeight + sectionHeight / 2) {
+                        section.classList.add('visible');
+                    }
+                });
+            });
+            
+            // Плавная прокрутка к якорям
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Закрываем мобильное меню после клика
+                        if (nav.classList.contains('open')) {
+                            nav.classList.remove('open');
+                            navToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                        }
+                    }
+                });
+            });
+            
+            // Фильтрация портфолио
+            const portfolioFilters = document.querySelectorAll('.portfolio-filters button');
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+            
+            portfolioFilters.forEach(filter => {
+                filter.addEventListener('click', function() {
+                    // Убираем активный класс у всех кнопок
+                    portfolioFilters.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Добавляем активный класс текущей кнопке
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    portfolioItems.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.style.display = 'block';
+                            setTimeout(() => {
+                                item.style.opacity = '1';
+                                item.style.transform = 'scale(1)';
+                            }, 10);
+                        } else {
+                            item.style.opacity = '0';
+                            item.style.transform = 'scale(0.8)';
+                            setTimeout(() => {
+                                item.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+            
+            // Слайдер отзывов
+            const testimonials = document.querySelectorAll('.testimonial');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            let currentTestimonial = 0;
+            
+            function showTestimonial(index) {
+                testimonials.forEach(testimonial => testimonial.classList.remove('active'));
+                testimonials[index].classList.add('active');
+            }
+            
+            prevBtn.addEventListener('click', function() {
+                currentTestimonial--;
+                if (currentTestimonial < 0) {
+                    currentTestimonial = testimonials.length - 1;
+                }
+                showTestimonial(currentTestimonial);
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                currentTestimonial++;
+                if (currentTestimonial >= testimonials.length) {
+                    currentTestimonial = 0;
+                }
+                showTestimonial(currentTestimonial);
+            });
+            
+            // Автопереключение отзывов
+            setInterval(function() {
+                currentTestimonial++;
+                if (currentTestimonial >= testimonials.length) {
+                    currentTestimonial = 0;
+                }
+                showTestimonial(currentTestimonial);
+            }, 5000);
+            
+            // Обработка формы
+            const contactForm = document.getElementById('contactForm');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Спасибо за ваше сообщение! Мы свяжемся с вами в ближайшее время.');
+                contactForm.reset();
+            });
+            
+            // Переключение темы
+            const themeToggle = document.querySelector('.theme-toggle');
+            const themeIcon = themeToggle.querySelector('i');
+            
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                
+                if (document.body.classList.contains('dark-mode')) {
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+            
+            // Проверяем сохраненную тему
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark-mode');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
+            
+            // Анимация появления секций при загрузке
+            document.querySelectorAll('.section').forEach((section, index) => {
+                setTimeout(() => {
+                    if (window.scrollY > section.offsetTop - window.innerHeight + 100) {
+                        section.classList.add('visible');
+                    }
+                }, index * 100);
+            });
+            
+            // Анимация для кнопки скролла вниз
+            document.querySelector('.scroll-down').addEventListener('click', function() {
+                window.scrollTo({
+                    top: document.querySelector('#about').offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
