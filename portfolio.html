@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Портфолио - BM Studio</title>
+    <link rel="icon" type="image/png" href="resources\images\logo\logo_light.png" id="favicon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="script.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">BM <span>Studio</span></a>
+            
+            <div class="header-right">
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="index.html#about">О нас</a></li>
+                        <li><a href="index.html#services">Услуги</a></li>
+                        <li><a href="portfolio.html" class="active">Портфолио</a></li>
+                        <li><a href="index.html#process">Процесс</a></li>
+                        <li><a href="index.html#testimonials">Отзывы</a></li>
+                        <li><a href="index.html#contact">Контакты</a></li>
+                    </ul>
+                </nav>
+                <button class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="nav-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Хлебные крошки -->
+    <div class="breadcrumbs">
+        <div class="container breadcrumbs-container">
+            <a href="index.html">Главная</a>
+            <span>/</span>
+            <a href="portfolio.html">Портфолио</a>
+        </div>
+    </div>
+
+    <!-- Портфолио -->
+    <section class="section portfolio">
+        <div class="container">
+            <h2 class="section-title">Наше <span>портфолио</span></h2>
+            
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all"><span>Все работы</span></button>
+                <button class="filter-btn" data-filter="apartment"><span>Квартиры</span></button>
+                <button class="filter-btn" data-filter="house"><span>Дома</span></button>
+                <button class="filter-btn" data-filter="commercial"><span>Коммерческие</span></button>
+                <button class="filter-btn" data-filter="decor"><span>Декорирование</span></button>
+            </div>
+            
+            <div class="portfolio-grid" id="portfolioGrid">
+                <!-- Проекты будут добавлены динамически через JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Призыв к действию -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Хотите такой же проект?</h2>
+                <p>Свяжитесь с нами для обсуждения вашего проекта. Мы создадим интерьер, который будет радовать вас каждый день.</p>
+                <a href="index.html#contact" class="btn">Обсудить проект</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">BM <span>Studio</span></div>
+                    <p>Создаем уникальные интерьеры, которые отражают характер и потребности наших клиентов. Профессиональный подход и внимание к деталям.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Ссылки</h3>
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="index.html#about">О нас</a></li>
+                        <li><a href="index.html#services">Услуги</a></li>
+                        <li><a href="portfolio.html">Портфолио</a></li>
+                        <li><a href="index.html#process">Процесс</a></li>
+                        <li><a href="index.html#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-hours">
+                    <h3>Часы работы</h3>
+                    <div class="hours-item">
+                        <span>Пн-Пт:</span>
+                        <span>9:00 - 19:00</span>
+                    </div>
+                    <div class="hours-item">
+                        <span>Суббота:</span>
+                        <span>10:00 - 17:00</span>
+                    </div>
+                    <div class="hours-item">
+                        <span>Воскресенье:</span>
+                        <span>Выходной</span>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 BM Studio. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно -->
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Название проекта</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img src="" alt="Проект" id="modalImage" class="modal-img">
+                <div class="modal-details">
+                    <div class="detail-item">
+                        <h4>Категория</h4>
+                        <p id="modalCategory">Квартира</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Площадь</h4>
+                        <p id="modalArea">85 м²</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Сроки</h4>
+                        <p id="modalTime">3 месяца</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Стоимость</h4>
+                        <p id="modalPrice">По запросу</p>
+                    </div>
+                </div>
+                <p id="modalDescription">Описание проекта...</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
